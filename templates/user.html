@@ -1,0 +1,33 @@
+{%extends 'base.html'%}
+{%block title%} SHHHHHHH {%endblock%}
+
+
+{%block content%}
+<ul>
+
+<li>Name: {{users.first_name}} {{users.last_name}}</li>
+<li>Username: {{users.username}}</li>
+<li>Email: {{users.email}}</li>
+</ul>
+<h1>Feedback</h1>
+
+{%for feedback in users.user_feedback%}
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">{{feedback.title}}</h5>
+        <p class = "card-text">{{feedback.content}}</p>
+        
+        <a class= "btn btn-info" href="feedback/{{feedback.id}}/update">Update</a>
+        <form action='/user/feedback/{{feedback.id}}/delete' method = 'POST'>
+        <button class = "btn btn-danger">DELETE</button>
+    </form>
+    </div>
+</div>
+
+
+{%endfor%}
+</ul>
+<a href="/">Home</a>
+<a href="/user/{{users.username}}/feedback/add">Add Feedback</a>
+<a href="/user/{{users.username}}/delete">Delete</a>
+{%endblock%}
